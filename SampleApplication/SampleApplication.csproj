@@ -114,6 +114,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MediaKit\D3DRenderer.cs" />
+    <Compile Include="MediaKit\Direct3D.cs" />
+    <Compile Include="MediaKit\Effects\DeeperColor.cs" />
+    <Compile Include="MediaKit\ICustomAllocator.cs" />
+    <Compile Include="MediaKit\MediaElementBase.cs" />
+    <Compile Include="MediaKit\MediaPlayerBase.cs" />
+    <Compile Include="MediaKit\MultimediaUtil.cs" />
+    <Compile Include="MediaKit\PropertyPageHelper.cs" />
+    <Compile Include="MediaKit\VideoCapturePlayer.cs" />
+    <Compile Include="MediaKit\Vmr9Allocator.cs" />
+    <Compile Include="MediaKit\WorkDispatcher.cs" />
+    <Compile Include="MediaKit\WorkDispatcherObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -127,6 +139,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="MediaKit\VideoCaptureElement.cs" />
     <Compile Include="WebCamPlayerWindow.xaml.cs">
       <DependentUpon>WebCamPlayerWindow.xaml</DependentUpon>
     </Compile>
@@ -136,18 +149,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="MediaKit\Effects\DeeperColor.ps" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Source\WPF MediaKit.csproj">
-      <Project>{73154957-3d91-48da-8068-d425b523ed93}</Project>
-      <Name>WPF MediaKit</Name>
-    </ProjectReference>
+    <Content Include="MediaKit\Effects\DeeperColor.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
