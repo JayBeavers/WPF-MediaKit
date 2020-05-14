@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{73154957-3D91-48DA-8068-D425B523ED93}</ProjectGuid>
-    <OutputType>library</OutputType>
+    <ProjectGuid>{77DD70C4-DE32-4A31-AE22-675F5758FB5F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPFMediaKit</RootNamespace>
-    <AssemblyName>WPFMediaKit</AssemblyName>
+    <RootNamespace>Test_Application</RootNamespace>
+    <AssemblyName>Test Application</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,6 +16,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,29 +24,22 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>default</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DirectShowLib-2005, Version=2.1.0.26626, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Assemblies\DirectShowLib-2005.dll</HintPath>
-    </Reference>
+    <Reference Include="DirectShowLib-2005, Version=2.1.0.26626, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,44 +53,25 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\MediaDetectorGeneric.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnumToBooleanConverter.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DirectShow\Controls\D3DRenderer.cs" />
-    <Compile Include="DirectShow\Controls\DvdPlayerElement.cs" />
-    <Compile Include="DirectShow\Controls\MediaDetectorElement.cs" />
-    <Compile Include="DirectShow\Controls\MediaElementBase.cs" />
-    <Compile Include="DirectShow\Controls\MediaSeekingElement.cs" />
-    <Compile Include="DirectShow\Controls\MediaUriElement.cs" />
-    <Compile Include="DirectShow\Controls\MultimediaUtil.cs" />
-    <Compile Include="DirectShow\Controls\ValueConverters.cs" />
-    <Compile Include="DirectShow\Controls\VideoCaptureElement.cs" />
-    <Compile Include="DirectShow\MediaPlayers\BaseClasses.cs" />
-    <Compile Include="DirectShow\MediaPlayers\ClassId.cs" />
-    <Compile Include="DirectShow\MediaPlayers\DirectShowUtil.cs" />
-    <Compile Include="DirectShow\MediaPlayers\DvdPlayer.cs" />
-    <Compile Include="DirectShow\MediaPlayers\FilterFromFile.cs" />
-    <Compile Include="DirectShow\MediaPlayers\Filters.cs" />
-    <Compile Include="DirectShow\MediaPlayers\MediaDetector.cs" />
-    <Compile Include="DirectShow\MediaPlayers\MediaSeekingPlayer.cs" />
-    <Compile Include="DirectShow\MediaPlayers\MediaUriPlayer.cs" />
-    <Compile Include="DirectShow\MediaPlayers\PropertyPageHelper.cs" />
-    <Compile Include="DirectShow\MediaPlayers\VideoCapturePlayer.cs" />
-    <Compile Include="DirectShow\MediaPlayers\Vmr9Allocator.cs" />
-    <Compile Include="DirectX\Direct3D.cs" />
-    <Compile Include="Effects\DeeperColor.cs" />
-    <Compile Include="ILog.cs" />
-    <Compile Include="LogManager.cs" />
-    <Compile Include="MediaFoundation\COMUtils.cs" />
-    <Compile Include="MediaFoundation\EvrPresenter.cs" />
-    <Compile Include="MediaFoundation\Interop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -110,14 +85,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Threading\WorkDispatcher.cs" />
-    <Compile Include="Threading\WorkDispatcherObject.cs" />
-    <Compile Include="WPFMediaKitException.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Effects\DeeperColor.ps" />
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,8 +97,15 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assemblies\DirectShowLib-2005.dll" />
-    <Content Include="Effects\DeeperColor.fx" />
+    <ProjectReference Include="..\Source\WPF MediaKit.csproj">
+      <Project>{73154957-3d91-48da-8068-d425b523ed93}</Project>
+      <Name>WPF MediaKit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EVRPresenter32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
