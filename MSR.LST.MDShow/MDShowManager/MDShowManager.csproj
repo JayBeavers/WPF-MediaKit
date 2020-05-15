@@ -115,21 +115,6 @@
       <HintPath>..\Interop\filters.interop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LSTCommon">
-      <Name>LSTCommon</Name>
-      <HintPath>..\..\MSR.LST.ConferenceAPI\Redist\LSTCommon.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MSR.LST.Net.Rtp">
-      <Name>MSR.LST.Net.Rtp</Name>
-      <HintPath>..\..\MSR.LST.ConferenceAPI\Redist\MSR.LST.Net.Rtp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NetworkingBasics">
-      <Name>NetworkingBasics</Name>
-      <HintPath>..\..\MSR.LST.ConferenceAPI\Redist\NetworkingBasics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -170,12 +155,10 @@
     <Compile Include="Installation.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MDShowEventLog.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="MediaType.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PayloadType.cs" />
     <Compile Include="Pins.cs">
       <SubType>Code</SubType>
     </Compile>

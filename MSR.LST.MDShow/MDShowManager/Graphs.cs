@@ -8,7 +8,6 @@ using System.Runtime.InteropServices.ComTypes;
 using Microsoft.Win32;
 
 using MSR.LST.MDShow.Filters;
-using MSR.LST.Net.Rtp;
 using System.Collections.Generic;
 using System.Configuration;
 
@@ -476,6 +475,7 @@ namespace MSR.LST.MDShow
             iGB.Render(pin);
         }
 
+        /*
         public virtual void RenderNetwork(RtpSender rtpSender, PayloadType payload) {
             RenderNetwork(rtpSender);
         }
@@ -499,7 +499,7 @@ namespace MSR.LST.MDShow
             iGB.Connect(compressor != null ? compressor.OutputPin : source.OutputPin,
                 renderer.InputPin);
         }
-    
+        */
 
         /// <summary>
         /// Start sending the data stream.
@@ -913,6 +913,7 @@ namespace MSR.LST.MDShow
             get { return (VideoCompressor)videoCompressor; }
         }
 
+        /*
         /// <summary>
         /// Connect up a branch of the graph for network sending.  Source filter should already be in the graph.
         /// DVSplitter and compressor may also already be connected, but for uncompressed cases, the Splitter
@@ -951,7 +952,7 @@ namespace MSR.LST.MDShow
                     audioRenderer.InputPin);
             }
         }
-
+        */
         public void GetVideoMediaType(out _AMMediaType mt, out object formatBlock) {
             _AMMediaType[] mts;
             object[] formats;

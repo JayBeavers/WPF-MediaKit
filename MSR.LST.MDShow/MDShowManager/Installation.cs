@@ -18,7 +18,6 @@ namespace MSR.LST.MDShow
     {
         public override void Commit(IDictionary savedState)
         {
-            MDShowEventLog.Install();
 
             string oldDirectory = Directory.GetCurrentDirectory();
             FileInfo fi = new FileInfo(Assembly.GetExecutingAssembly().Location);
@@ -30,7 +29,7 @@ namespace MSR.LST.MDShow
             }
             catch (DllNotFoundException)
             {
-                RtlAwareMessageBox.Show(null, Strings.MissingCxpRtpFiltersError, Strings.FileNotFound, 
+                MessageBox.Show(null, Strings.MissingCxpRtpFiltersError, Strings.FileNotFound, 
                     MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0);
             }
 
@@ -40,7 +39,7 @@ namespace MSR.LST.MDShow
             }
             catch (DllNotFoundException)
             {
-                RtlAwareMessageBox.Show(null, Strings.MissingScreenScraperFilterError, Strings.FileNotFound, 
+                MessageBox.Show(null, Strings.MissingScreenScraperFilterError, Strings.FileNotFound, 
                     MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0);
             }
 
@@ -59,7 +58,7 @@ namespace MSR.LST.MDShow
             }
             catch (DllNotFoundException)
             {
-                RtlAwareMessageBox.Show(null, Strings.MissingCxpRtpFiltersError, Strings.FileNotFound, 
+                MessageBox.Show(null, Strings.MissingCxpRtpFiltersError, Strings.FileNotFound, 
                     MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0);
             }
 
@@ -69,13 +68,11 @@ namespace MSR.LST.MDShow
             }
             catch (DllNotFoundException)
             {
-                RtlAwareMessageBox.Show(null, Strings.MissingScreenScraperFilterError, Strings.FileNotFound, 
+                MessageBox.Show(null, Strings.MissingScreenScraperFilterError, Strings.FileNotFound, 
                     MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0);
             }
 
             Directory.SetCurrentDirectory(oldDirectory);
-
-            MDShowEventLog.Uninstall();
 
             if (savedState.Count != 0)
                 base.Uninstall(savedState);
