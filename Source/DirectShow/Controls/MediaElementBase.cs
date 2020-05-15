@@ -18,7 +18,7 @@ namespace WPFMediaKit.DirectShow.Controls
 
         ~MediaElementBase()
         {
-            
+
         }
 
         #region Routed Events
@@ -201,7 +201,15 @@ namespace WPFMediaKit.DirectShow.Controls
             SetValue(IsPlayingPropertyKey, value);
         }
         #endregion
-        
+
+        public MediaState State
+        {
+            get
+            {
+                return MediaPlayerBase.GetMediaState();
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -558,8 +566,12 @@ namespace WPFMediaKit.DirectShow.Controls
             MediaPlayerBase.EnsureThread(DefaultApartmentState);
             MediaPlayerBase.Dispatcher.BeginInvoke((Action)(delegate
             {
-                MediaPlayerBase.Play();
-                Dispatcher.BeginInvoke(((Action) (() => SetIsPlaying(true))));
+                var success = MediaPlayerBase.Play();
+
+                if (success)
+                    Dispatcher.BeginInvoke(((Action)(() => SetIsPlaying(true))));
+                else
+                    Dispatcher.BeginInvoke(((Action)(() => OnMediaPlayerFailed(new MediaFailedEventArgs("Play returned S_FALSE", null)))));
             }));
             
         }

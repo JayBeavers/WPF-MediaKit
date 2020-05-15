@@ -974,7 +974,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
         /// <summary>
         /// Plays the media
         /// </summary>
-        public virtual void Play()
+        public virtual bool Play()
         {
             VerifyAccess();
 
@@ -985,7 +985,10 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
             }
 
             if (m_mediaControl != null)
-                m_mediaControl.Run();
+                return m_mediaControl.Run() == 0x00; // S_OK
+
+            return false; // Run() did not succeed for any reason
+
         }
 
         /// <summary>
@@ -1130,6 +1133,23 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
             NaturalVideoWidth = (int)size.Width;
 
             HasVideo = true;
+        }
+
+        public MediaState GetMediaState()
+        {
+            m_mediaControl.GetState(0, out FilterState filterState);
+
+            switch (filterState)
+            {
+                case FilterState.Running:
+                    return MediaState.Play;
+                case FilterState.Stopped:
+                    return MediaState.Stop;
+                case FilterState.Paused:
+                    return MediaState.Pause;
+                default:
+                    return MediaState.Stop;
+            }
         }
 
         /// <summary>
