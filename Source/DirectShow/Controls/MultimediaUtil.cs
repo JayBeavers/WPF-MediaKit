@@ -32,25 +32,11 @@ namespace WPFMediaKit.DirectShow.Controls
 		#endregion
 
 		#region Video Input Devices
-		/// <summary>
-		/// The private cache of the video input names
-		/// </summary>
-		private static string[] m_videoInputNames;
-
-		/// <summary>
-		/// An array of video input device names
-		/// on the current system
-		/// </summary>
 		public static string[] VideoInputNames
 		{
 			get
 			{
-				if (m_videoInputNames == null)
-				{
-					m_videoInputNames = (from d in VideoInputDevices
-										 select d.Name).ToArray();
-				}
-				return m_videoInputNames;
+				return (from d in VideoInputDevices select d.Name).ToArray();
 			}
 		}
 
@@ -58,35 +44,23 @@ namespace WPFMediaKit.DirectShow.Controls
 
 		private static DsDevice[] GetDevices(Guid filterCategory)
 		{
-			return (from d in DsDevice.GetDevicesOfCat(filterCategory)
-					select d).ToArray();
+			return (from d in DsDevice.GetDevicesOfCat(filterCategory) select d).ToArray();
 		}
 
     	public static DsDevice[] VideoInputDevices
 		{
 			get
 			{
-				if (m_videoInputDevices == null)
-				{
-					m_videoInputDevices = GetDevices(FilterCategory.VideoInputDevice);
-				}
-				return m_videoInputDevices;
+				return GetDevices(FilterCategory.VideoInputDevice);
 			}
 		}
-		private static DsDevice[] m_videoInputDevices;
 
 		public static string[] VideoInputsDevicePaths
 		{
 			get
 			{
-				if (m_videoInputsDevicePaths == null)
-				{
-					m_videoInputsDevicePaths = (from d in VideoInputDevices
-					                          select d.DevicePath).ToArray();
-				}
-				return m_videoInputsDevicePaths;
+				return (from d in VideoInputDevices select d.DevicePath).ToArray();
 			}
 		}
-		private static string[] m_videoInputsDevicePaths;
     }
 }
