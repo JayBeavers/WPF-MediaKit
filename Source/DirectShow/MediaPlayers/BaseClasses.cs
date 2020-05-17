@@ -1137,19 +1137,25 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
 
         public MediaState GetMediaState()
         {
-            m_mediaControl.GetState(0, out FilterState filterState);
-
-            switch (filterState)
+            if (m_mediaControl != null)
             {
-                case FilterState.Running:
-                    return MediaState.Play;
-                case FilterState.Stopped:
-                    return MediaState.Stop;
-                case FilterState.Paused:
-                    return MediaState.Pause;
-                default:
-                    return MediaState.Stop;
+                m_mediaControl.GetState(0, out FilterState filterState);
+
+                switch (filterState)
+                {
+                    case FilterState.Running:
+                        return MediaState.Play;
+                    case FilterState.Stopped:
+                        return MediaState.Stop;
+                    case FilterState.Paused:
+                        return MediaState.Pause;
+                    default:
+                        return MediaState.Stop;
+                }
             }
+
+            return MediaState.Close;
+
         }
 
         /// <summary>
